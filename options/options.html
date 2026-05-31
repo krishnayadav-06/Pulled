@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeetCode → GitHub Sync — Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+
+  <div class="container">
+    <header class="page-header" style="text-align: center;">
+      <h1 class="page-title">Pulled: LeetCode → GitHub Sync</h1>
+      <p class="page-subtitle">Configure your GitHub connection and folder structure.</p>
+    </header>
+
+    <!-- ─── GitHub Settings ────────────────────────────── -->
+    <section class="card" id="github-section">
+      <h2 class="card-title">GitHub Settings</h2>
+
+      <div class="field">
+        <label for="github-token" class="field-label">Personal Access Token</label>
+        <input type="password" id="github-token" class="field-input" placeholder="ghp_…" autocomplete="off" />
+        <p class="field-hint">Requires <code>contents: write</code> scope on the target repo.</p>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="github-owner" class="field-label">Repository Owner</label>
+          <input type="text" id="github-owner" class="field-input" placeholder="username or org" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="github-repo" class="field-label">Repository Name</label>
+          <input type="text" id="github-repo" class="field-input" placeholder="leetcode" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="github-branch" class="field-label">Default Branch</label>
+        <input type="text" id="github-branch" class="field-input" placeholder="main" autocomplete="off" />
+      </div>
+
+      <div class="field-actions">
+        <button id="test-connection-btn" class="btn btn-secondary">Test Connection</button>
+        <span id="test-result" class="test-result"></span>
+      </div>
+    </section>
+
+    <!-- ─── Folder Structure ───────────────────────────── -->
+    <section class="card" id="folder-section">
+      <h2 class="card-title">Folder Structure</h2>
+
+      <!-- Mode slider -->
+      <div class="mode-slider">
+        <button id="mode-template" class="mode-option mode-active" data-mode="template">Token Template</button>
+        <button id="mode-college" class="mode-option" data-mode="college">College Workflow</button>
+        <div class="mode-slider-track" id="mode-track"></div>
+      </div>
+
+      <!-- Token Template panel -->
+      <div id="panel-template" class="mode-panel">
+        <div class="preset-bar">
+          <span class="preset-label">Presets:</span>
+          <button class="preset-btn" data-template="leetcode/{year}/{month}-{day}_{id}_{slug}/solution.{ext}">By date</button>
+          <button class="preset-btn" data-template="leetcode/{difficulty}/{id}_{slug}/solution.{ext}">By difficulty</button>
+          <button class="preset-btn" data-template="leetcode/{language}/{id}_{slug}/solution.{ext}">By language</button>
+          <button class="preset-btn" data-template="leetcode/{id}_{slug}.{ext}">Flat</button>
+          <button class="preset-btn" data-template="leetcode/{difficulty}/{slug}.{ext}">NeetCode</button>
+        </div>
+
+        <div class="field">
+          <label for="path-template" class="field-label">Path Template</label>
+          <input type="text" id="path-template" class="field-input field-input-mono" placeholder="leetcode/{difficulty}/{id}_{slug}/solution.{ext}" autocomplete="off" />
+        </div>
+
+        <div class="preview-box">
+          <span class="preview-label">Preview:</span>
+          <code id="path-preview" class="preview-code"></code>
+        </div>
+
+        <div class="token-ref">
+          <span class="token-ref-title">Available tokens:</span>
+          <span class="token-chip">{year}</span>
+          <span class="token-chip">{month}</span>
+          <span class="token-chip">{day}</span>
+          <span class="token-chip">{difficulty}</span>
+          <span class="token-chip">{language}</span>
+          <span class="token-chip">{id}</span>
+          <span class="token-chip">{slug}</span>
+          <span class="token-chip">{title}</span>
+          <span class="token-chip">{ext}</span>
+        </div>
+      </div>
+
+      <!-- College Workflow panel -->
+      <div id="panel-college" class="mode-panel" style="display: none;">
+        <div class="college-diagram">
+          <pre class="college-tree"><code>&lt;repo-root&gt;/
+├── Week_1/
+│   ├── Day_1/
+│   ├── Day_2/
+│   ├── Day_3/
+│   ├── Day_4/
+│   └── Day_5/
+├── Week_2/
+│   └── ...
+├── Week_3/
+│   └── ...
+└── Week_4/
+    └── ...</code></pre>
+        </div>
+        <p class="college-hint">Select the target <strong>Week</strong> and <strong>Day</strong> in the popup before each commit.</p>
+        <p class="college-file-hint">Files are named: <code>{id}_{slug}.{ext}</code></p>
+      </div>
+
+      <!-- Skip existing toggle -->
+      <div class="toggle-row">
+        <label class="toggle-label" for="skip-existing">Skip existing files</label>
+        <label class="toggle-switch">
+          <input type="checkbox" id="skip-existing" />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- ─── Commit Message ─────────────────────────────── -->
+    <section class="card" id="commit-section">
+      <h2 class="card-title">Commit Message</h2>
+
+      <div class="field">
+        <label for="commit-template" class="field-label">Message Template</label>
+        <input type="text" id="commit-template" class="field-input field-input-mono" placeholder="Add {id}. {title} [{language}] - {date}" autocomplete="off" />
+        <p class="field-hint">Uses the same tokens as the path template, plus <code>{date}</code>.</p>
+      </div>
+    </section>
+
+    <!-- ─── Save ───────────────────────────────────────── -->
+    <div class="save-bar">
+      <button id="save-btn" class="btn btn-dark">Save Settings</button>
+      <span id="save-status" class="save-status"></span>
+    </div>
+
+    <!-- ─── Danger Zone ────────────────────────────────── -->
+    <section class="card card-danger" id="danger-section">
+      <h2 class="card-title card-title-danger">Danger Zone</h2>
+      <div class="danger-actions">
+        <button id="clear-token-btn" class="btn btn-danger-outline">Clear GitHub Token</button>
+        <button id="reset-all-btn" class="btn btn-danger-outline">Reset All Settings</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="../utils/path-builder.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

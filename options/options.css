@@ -1,0 +1,487 @@
+/* ── Options Page Styles — style.md palette ──────────────── */
+
+:root {
+  --color-bg:       #FFFFFF;
+  --color-ink:      #111827;
+  --color-muted:    #6B7280;
+  --color-border:   #E5E7EB;
+  --color-wash:     #F9FAFB;
+  --color-signal:   #2563EB;
+  --color-dark:     #111827;
+  --color-dark-mid: #1F2937;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-ink);
+  background: var(--color-wash);
+  min-height: 100vh;
+}
+
+/* ── Container ───────────────────────────────────────────── */
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* ── Page header ─────────────────────────────────────────── */
+
+.page-header {
+  margin-bottom: 32px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: var(--color-muted);
+  margin-top: 4px;
+}
+
+/* ── Cards ───────────────────────────────────────────────── */
+
+.card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--color-ink);
+}
+
+/* ── Fields ──────────────────────────────────────────────── */
+
+.field {
+  margin-bottom: 16px;
+}
+
+.field-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-ink);
+  margin-bottom: 6px;
+}
+
+.field-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--color-ink);
+  background: var(--color-bg);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.field-input:focus {
+  border-color: var(--color-signal);
+}
+
+.field-input-mono {
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  font-size: 13px;
+}
+
+.field-hint {
+  font-size: 12px;
+  color: var(--color-muted);
+  margin-top: 4px;
+}
+
+.field-hint code {
+  background: var(--color-wash);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.field-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+
+.btn {
+  padding: 9px 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.15s, opacity 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  background: var(--color-wash);
+  color: var(--color-ink);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  background: var(--color-border);
+}
+
+.btn-dark {
+  background: var(--color-dark);
+  color: #FFFFFF;
+}
+
+.btn-dark:hover {
+  background: var(--color-dark-mid);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── Test connection result ──────────────────────────────── */
+
+.test-result {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.test-result-ok {
+  color: #15803d;
+}
+
+.test-result-fail {
+  color: #dc2626;
+}
+
+/* ── Mode slider ─────────────────────────────────────────── */
+
+.mode-slider {
+  display: flex;
+  position: relative;
+  background: var(--color-wash);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 3px;
+  margin-bottom: 20px;
+}
+
+.mode-option {
+  flex: 1;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--color-muted);
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: color 0.2s;
+}
+
+.mode-active {
+  color: var(--color-signal);
+  font-weight: 600;
+}
+
+.mode-slider-track {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: calc(50% - 3px);
+  height: calc(100% - 6px);
+  background: var(--color-bg);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mode-slider-track.right {
+  transform: translateX(100%);
+}
+
+/* ── Mode panels ─────────────────────────────────────────── */
+
+.mode-panel {
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Preset bar ──────────────────────────────────────────── */
+
+.preset-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.preset-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-muted);
+  margin-right: 2px;
+}
+
+.preset-btn {
+  padding: 4px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  background: var(--color-bg);
+  font-size: 12px;
+  font-family: inherit;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.preset-btn:hover {
+  border-color: var(--color-muted);
+  background: var(--color-wash);
+}
+
+/* ── Preview box ─────────────────────────────────────────── */
+
+.preview-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #0a0a0f;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.preview-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #6B7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.preview-code {
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  font-size: 12px;
+  color: #4ade80;
+}
+
+/* ── Token reference ─────────────────────────────────────── */
+
+.token-ref {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.token-ref-title {
+  font-size: 12px;
+  color: var(--color-muted);
+  margin-right: 2px;
+}
+
+.token-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--color-wash);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  font-size: 11px;
+  color: var(--color-muted);
+}
+
+/* ── College panel ───────────────────────────────────────── */
+
+.college-diagram {
+  background: #0a0a0f;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 12px;
+  overflow-x: auto;
+}
+
+.college-tree {
+  margin: 0;
+}
+
+.college-tree code {
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  font-size: 12px;
+  color: #4ade80;
+  line-height: 1.6;
+}
+
+.college-hint {
+  font-size: 13px;
+  color: var(--color-muted);
+  margin-bottom: 4px;
+}
+
+.college-hint strong {
+  color: var(--color-ink);
+}
+
+.college-file-hint {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.college-file-hint code {
+  background: var(--color-wash);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+/* ── Toggle switch ───────────────────────────────────────── */
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+.toggle-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: var(--color-border);
+  border-radius: 11px;
+  transition: background 0.2s;
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 16px;
+  height: 16px;
+  background: var(--color-bg);
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background: var(--color-dark);
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+  transform: translateX(18px);
+}
+
+/* ── Save bar ────────────────────────────────────────────── */
+
+.save-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.save-status {
+  font-size: 13px;
+  font-weight: 500;
+  color: #15803d;
+}
+
+/* ── Danger zone ─────────────────────────────────────────── */
+
+.card-danger {
+  border-color: #fecaca;
+}
+
+.card-title-danger {
+  color: #dc2626;
+}
+
+.danger-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-danger-outline {
+  padding: 8px 16px;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  color: #dc2626;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.btn-danger-outline:hover {
+  background: #fef2f2;
+}
